@@ -72,4 +72,22 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await Auth.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "The user could not find" });
+    }
+
+    res
+      .status(200)
+      .json({ user: { username: user.username, email: user.email } });
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ message: "ctrl/auth/getUserById: " + error.message });
+  }
+};
+
+module.exports = { register, login, getUserById };

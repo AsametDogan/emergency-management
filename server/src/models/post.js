@@ -18,6 +18,11 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("posts", PostSchema);

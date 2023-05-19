@@ -6,6 +6,8 @@ const auth = require("../middleware/auth.js");
 const router = express.Router();
 
 router.get("/getAllPosts", getAllPosts);
+
+
 router.get("/searchPost/", searchPost);
 router.get("/getDetailPost/:id",getPostById );
 router.post("/createPost",auth, createPost);

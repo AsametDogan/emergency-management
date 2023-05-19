@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
 app.use("/", Auth);
 app.use("/", Post);
-app.get("/",(req,res)=>{
+app.get("/test",(req,res)=>{
   res.status(200).json({ message:"ula ula ula" });
 })
 

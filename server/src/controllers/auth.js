@@ -1,10 +1,12 @@
 const Auth = require("../models/auth.js");
 
+//const jwt = require("jsonwebtoken");
+
 const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    
     const user = await Auth.findOne({ email });
-    const jwt = require("jsonwebtoken");
 
     if (user) {
       return res.status(409).json({
@@ -25,11 +27,13 @@ const register = async (req, res) => {
       email,
       password: passwordHash,
     });
+
     const userToken = await jwt.sign(
       { id: newUser.id },
       process.env.SECRET_TOKEN,
       { expiresIn: "6h" }
     );
+
     res.status(201).json({
       status: "OK",
       newUser,
@@ -45,10 +49,10 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await Auth.findOne({});
+    const user = await Auth.findOne({email});
     if (!user) {
       return res.status(404).json({
-        message: "The account could not be found",
+        message: "The account could not found",
       });
     }
     const isValid = await bcrypt.compare(password, user.password);
@@ -75,6 +79,7 @@ const login = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
+    
     const user = await Auth.findById(id);
     if (!user) {
       return res.status(404).json({ message: "The user could not find" });

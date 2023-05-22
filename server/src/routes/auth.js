@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/register", register);
 router.post("/login", login);
+
 router.get("/deneme",(req,res)=>{
     res.status(200).json({ message:"ula ula ula" });
 })

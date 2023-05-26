@@ -14,10 +14,10 @@ const register = async (req, res) => {
       });
     }
 
-    if (password.length < 6) {
+    if (passwordCheck(password)) {
       return res
         .status(411)
-        .json({ message: "Not enough length for password" });
+        .json({ message: "Password should contain at least 8 digits, at least one character, number and special character." });
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
@@ -94,5 +94,45 @@ const getUserById = async (req, res) => {
       .json({ message: "ctrl/auth/getUserById: " + error.message });
   }
 };
+
+
+
+const passwordCheck = (password) => {
+    var hasNumber;
+    var hasChar;
+    var hasSymbol;
+    var has8digits;
+    (password.length>=8) ? true: false;
+
+    password.forEach(checkCharacters);
+
+    var isValid = hasNumber && hasChar && hasSymbol && has8digits;
+    return isValid;
+
+}
+
+
+const checkCharacters = (charOfPassword) =>{
+  if (isInteger(charOfPassword)){
+    hasNumber =true;
+  }
+  else if(checkLetter(charOfPassword)){
+    hasChar=true;
+  }
+  else if(containsSpecialChars(charOfPassword)){
+    hasSymbol =true;
+  }
+}
+
+function checkLetter(str) {
+  return /^[A-Za-z]*$/.test(str);
+}
+
+function containsSpecialChars(str) {
+  const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+  return specialChars.test(str);
+}
+
+
 
 module.exports = { register, login, getUserById };

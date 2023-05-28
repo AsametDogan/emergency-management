@@ -35,7 +35,6 @@ module.exports = withMT({
         yellowSecondary: "#FFC318",
         gradient: "#212121",
       },
-      
     },
     screens: {
       "2xl": { max: "1490px" },
@@ -44,7 +43,7 @@ module.exports = withMT({
       xl: { max: "1279px" },
       // => @media (max-width: 1279px) { ... }
 
-      lg: { max: "1160px" },
+      lg: { max: "1160px", min: "781px" },
       // => @media (max-width: 1023px) { ... }
 
       md: { max: "780px" },
@@ -53,9 +52,10 @@ module.exports = withMT({
       sm: { max: "500px" },
       // => @media (max-width: 639px) { ... }
 
-      "just-sm": { min: "530px" },
-      "just-xl": { min: "1279px" },
+      "just-sm": { min: "500px" },
+      "just-md": { min: "780px" },
       "just-lg": { min: "1160px" },
+      "just-xl": { min: "1279px" },
     },
   },
   plugins: [],

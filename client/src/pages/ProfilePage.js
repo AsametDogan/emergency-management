@@ -28,7 +28,7 @@ const ProfilePage = () => {
           />{" "}
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
+          <label className="font-semibold">Email:</label>
           <input
             className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
             value={user.username}
@@ -36,7 +36,7 @@ const ProfilePage = () => {
           />{" "}
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
+          <label className="font-semibold">Telefon:</label>
           <input
             className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
             value={user.username}
@@ -44,7 +44,7 @@ const ProfilePage = () => {
           />{" "}
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
+          <label className="font-semibold">Adres:</label>
           <input
             className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
             value={user.username}
@@ -52,7 +52,7 @@ const ProfilePage = () => {
           />{" "}
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
+          <label className="font-semibold">Görevli Kişi:</label>
           <input
             className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
             value={user.username}
@@ -60,7 +60,7 @@ const ProfilePage = () => {
           />{" "}
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
+          <label className="font-semibold">Görevli Numarası:</label>
           <input
             className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
             value={user.username}
@@ -68,29 +68,15 @@ const ProfilePage = () => {
           />{" "}
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
+          <label className="font-semibold">Katılma Tarihi:</label>
           <input
             className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
             value={user.username}
             disabled={!edit}
           />{" "}
         </div>
-        <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
-          <input
-            className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
-            value={user.username}
-            disabled={!edit}
-          />{" "}
-        </div>
-        <div className="flex items-center gap-2 justify-center">
-          <label className="font-semibold">İsim:</label>
-          <input
-            className={`text-center max-w-[250px] w-full place-self-center rounded-tl-lg rounded-br-lg bg-blue-gray-200 px-2 py-1`}
-            value={user.username}
-            disabled={!edit}
-          />{" "}
-        </div>
+        
+        
       </div>
       <div>
         <button onClick={()=>{setEdit(true)}}>edit</button>

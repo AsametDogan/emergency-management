@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, phone, adress, contactName, contactPhone } = req.body;
     console.log(req.body);
     const user = await Auth.findOne({ email });
 
@@ -27,6 +27,10 @@ const register = async (req, res) => {
     const newUser = await Auth.create({
       username,
       email,
+      phone,
+      adress,
+      contactName,
+      contactPhone,
       password: passwordHash,
     });
 
@@ -81,7 +85,7 @@ const login = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const user = await Auth.findById(id);
     if (!user) {
       return res.status(404).json({ message: "The user could not find" });
@@ -89,7 +93,7 @@ const getUserById = async (req, res) => {
 
     res
       .status(200)
-      .json({ user: { username: user.username, email: user.email } });
+      .json({ user: { username: user.username, email: user.email, phone: user.phone, adress: user.adress, contactName: user.contactName, contactPhone: user.contactPhone } });
   } catch (error) {
     return res
       .status(404)

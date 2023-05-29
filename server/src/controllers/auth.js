@@ -1,11 +1,13 @@
 const Auth = require("../models/auth.js");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 //const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    
+    console.log(req.body);
     const user = await Auth.findOne({ email });
 
     if (user) {
@@ -14,7 +16,7 @@ const register = async (req, res) => {
       });
     }
 
-    if (passwordCheck(password)) {
+    if (!checkPassword(password)) {
       return res
         .status(411)
         .json({ message: "Password should contain at least 8 digits, at least one character, number and special character." });
@@ -96,42 +98,36 @@ const getUserById = async (req, res) => {
 };
 
 
-
-const passwordCheck = (password) => {
-    var hasNumber;
-    var hasChar;
-    var hasSymbol;
-    var has8digits;
-    (password.length>=8) ? true: false;
-
-    password.forEach(checkCharacters);
-
-    var isValid = hasNumber && hasChar && hasSymbol && has8digits;
-    return isValid;
-
-}
-
-
-const checkCharacters = (charOfPassword) =>{
-  if (isInteger(charOfPassword)){
-    hasNumber =true;
+function checkPassword(password) {
+  // Check if password is at least 8 characters long
+  if (password.length < 8) {
+    return false;
   }
-  else if(checkLetter(charOfPassword)){
-    hasChar=true;
+
+  // Check if password contains at least one character
+  if (!/[a-zA-Z]/.test(password)) {
+    return false;
   }
-  else if(containsSpecialChars(charOfPassword)){
-    hasSymbol =true;
+
+  // Check if password contains at least one special character
+  if (!/[!@#$%^&*(),.?":{}|<>-]/.test(password)) {
+    return false;
   }
+
+  // Check if password contains at least one number
+  if (!/\d/.test(password)) {
+    return false;
+  }
+
+  // If all conditions pass, return true
+  return true;
 }
 
-function checkLetter(str) {
-  return /^[A-Za-z]*$/.test(str);
-}
 
-function containsSpecialChars(str) {
-  const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  return specialChars.test(str);
-}
+
+
+
+
 
 
 

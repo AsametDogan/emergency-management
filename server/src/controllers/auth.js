@@ -1,11 +1,13 @@
 const Auth = require("../models/auth.js");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 //const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    
+    const { username, email, password, phone, adress, contactName, contactPhone } = req.body;
+    console.log(req.body);
     const user = await Auth.findOne({ email });
 
     if (user) {
@@ -14,7 +16,7 @@ const register = async (req, res) => {
       });
     }
 
-    if (passwordCheck(password)) {
+    if (!checkPassword(password)) {
       return res
         .status(411)
         .json({ message: "Password should contain at least 8 digits, at least one character, number and special character." });
@@ -25,6 +27,10 @@ const register = async (req, res) => {
     const newUser = await Auth.create({
       username,
       email,
+      phone,
+      adress,
+      contactName,
+      contactPhone,
       password: passwordHash,
     });
 
@@ -79,7 +85,7 @@ const login = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const user = await Auth.findById(id);
     if (!user) {
       return res.status(404).json({ message: "The user could not find" });
@@ -87,7 +93,7 @@ const getUserById = async (req, res) => {
 
     res
       .status(200)
-      .json({ user: { username: user.username, email: user.email } });
+      .json({ user: { username: user.username, email: user.email, phone: user.phone, adress: user.adress, contactName: user.contactName, contactPhone: user.contactPhone } });
   } catch (error) {
     return res
       .status(404)
@@ -96,42 +102,36 @@ const getUserById = async (req, res) => {
 };
 
 
-
-const passwordCheck = (password) => {
-    var hasNumber;
-    var hasChar;
-    var hasSymbol;
-    var has8digits;
-    (password.length>=8) ? true: false;
-
-    password.forEach(checkCharacters);
-
-    var isValid = hasNumber && hasChar && hasSymbol && has8digits;
-    return isValid;
-
-}
-
-
-const checkCharacters = (charOfPassword) =>{
-  if (isInteger(charOfPassword)){
-    hasNumber =true;
+function checkPassword(password) {
+  // Check if password is at least 8 characters long
+  if (password.length < 8) {
+    return false;
   }
-  else if(checkLetter(charOfPassword)){
-    hasChar=true;
+
+  // Check if password contains at least one character
+  if (!/[a-zA-Z]/.test(password)) {
+    return false;
   }
-  else if(containsSpecialChars(charOfPassword)){
-    hasSymbol =true;
+
+  // Check if password contains at least one special character
+  if (!/[!@#$%^&*(),.?":{}|<>-]/.test(password)) {
+    return false;
   }
+
+  // Check if password contains at least one number
+  if (!/\d/.test(password)) {
+    return false;
+  }
+
+  // If all conditions pass, return true
+  return true;
 }
 
-function checkLetter(str) {
-  return /^[A-Za-z]*$/.test(str);
-}
 
-function containsSpecialChars(str) {
-  const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  return specialChars.test(str);
-}
+
+
+
+
 
 
 

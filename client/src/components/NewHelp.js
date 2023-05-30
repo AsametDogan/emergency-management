@@ -33,95 +33,32 @@ const NewHelp = ({ open, handleOpen }) => {
       <DialogHeader>Yeni Yardım Çağrısı Oluştur</DialogHeader>
       <DialogBody divider>
         <form className="text-sm max-h-80 py-1 overflow-y-scroll scrollbar-hide">
-          <div className="flex flex-wrap gap-2 justify-evenly ">
-            <div className="flex flex-col">
+          <div className="flex flex-col gap-3 justify-center items-center ">
+            <div className="flex flex-col w-2/3">
               <label className="text-gradient">Durum Başlığı:</label>
               <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
             </div>
-            <div className="flex flex-col">
+
+            <div className="flex flex-col w-2/3">
+              <label className="text-gradient">Açıklama:</label>
+              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
+            </div>
+
+            <div className="flex flex-col w-2/3">
+              <label className="text-gradient">Bölge:</label>
+              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
+            </div>
+
+            <div className="flex flex-col w-2/3">
+              <label className="text-gradient">Çağrı Gönderen:</label>
+              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
+            </div>
+
+            <div className="flex flex-col w-2/3">
               <label className="text-gradient">Durum Başlığı:</label>
               <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
             </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
+            
           </div>
         </form>
       </DialogBody>

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const RegisterPage = () => {
   return (
-    <div>
-      register
+    <div className="flex ">
+      <div>a</div>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;

@@ -57,7 +57,7 @@ const NewHelp = ({ open, handleOpen }) => {
             <div className="flex flex-col w-2/3">
               <label className="text-gradient">Durum Başlığı:</label>
               <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div>
+            </div> 
             
           </div>
         </form>

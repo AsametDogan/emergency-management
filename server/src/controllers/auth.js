@@ -1,12 +1,21 @@
 const Auth = require("../models/auth.js");
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
-    const { username, email, password, phone, adress, contactName, contactPhone } = req.body;
+    const {
+      username,
+      email,
+      password,
+      phone,
+      adress,
+      contactName,
+      contactPhone,
+      isAdmin,
+    } = req.body;
     console.log(req.body);
     const user = await Auth.findOne({ email });
 
@@ -17,9 +26,11 @@ const register = async (req, res) => {
     }
 
     if (!checkPassword(password)) {
-      return res
-        .status(411)
-        .json({ message: "Password should contain at least 8 digits, at least one character, number and special character." });
+      console.log("şifre ynalşı");
+      return res.status(411).json({
+        message:
+          "Password should contain at least 8 digits, at least one character, number and special character.",
+      });
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
@@ -31,9 +42,10 @@ const register = async (req, res) => {
       adress,
       contactName,
       contactPhone,
+      isAdmin,
       password: passwordHash,
     });
-
+    console.log("new user" + newUser);
     const userToken = await jwt.sign(
       { id: newUser.id },
       process.env.SECRET_TOKEN,
@@ -55,7 +67,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await Auth.findOne({email});
+    const user = await Auth.findOne({ email });
     if (!user) {
       return res.status(404).json({
         message: "The account could not found",
@@ -91,16 +103,23 @@ const getUserById = async (req, res) => {
       return res.status(404).json({ message: "The user could not find" });
     }
 
-    res
-      .status(200)
-      .json({ user: { username: user.username, email: user.email, phone: user.phone, adress: user.adress, contactName: user.contactName, contactPhone: user.contactPhone } });
+    res.status(200).json({
+      user: {
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        adress: user.adress,
+        contactName: user.contactName,
+        contactPhone: user.contactPhone,
+        isAdmin:user.isAdmin
+      },
+    });
   } catch (error) {
     return res
       .status(404)
       .json({ message: "ctrl/auth/getUserById: " + error.message });
   }
 };
-
 
 function checkPassword(password) {
   // Check if password is at least 8 characters long
@@ -126,13 +145,5 @@ function checkPassword(password) {
   // If all conditions pass, return true
   return true;
 }
-
-
-
-
-
-
-
-
 
 module.exports = { register, login, getUserById };

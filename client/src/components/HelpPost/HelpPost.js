@@ -46,10 +46,12 @@ const HelpPost = () => {
           açıklama açıklama açıklama açıklam aaçıklama açıklamaaçıklama açıklam
           aaçıklama açıklamaaçıklama açıklama
         </div>
-        <div className="text-xs flex gap-1 items-center ">
-          {" "}
-          <IoLocationOutline />
-          konum konum
+        <div className="text-xs flex gap-1 items-center justify-between ">
+          <label>phone:telefontelefon</label>
+          <div className="flex gap-1">
+            <IoLocationOutline />
+            konum konum
+          </div>
         </div>
       </div>
       {user.isAdmin ? (

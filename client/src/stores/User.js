@@ -14,8 +14,8 @@ export const user = createSlice({
       img_url: "",
       createdDate: "date",
     },
-    isLogged: true,
-    isAdmin: true ,
+    isLogged: false,
+    isAdmin: false,
   },
   reducers: {
     login: (state, action) => {
@@ -29,8 +29,12 @@ export const user = createSlice({
     setLoggedIn: (state) => {
       state.isLogged = true;
     },
+    setAsAdmin: (state) => {
+      state.isAdmin = true;
+    },
   },
 });
 
-export const { login, logout, setUserType, setLoggedIn } = user.actions;
+export const { login, logout, setUserType, setLoggedIn, setAsAdmin } =
+  user.actions;
 export default user.reducer;

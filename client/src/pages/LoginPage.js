@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { loginUserApi } from "../api/auth";
+import { login, setAsAdmin, setLoggedIn } from "../stores/User";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoginPage = () => {
+  const [user, setUser] = useState({});
+  const data = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    const response = await loginUserApi(user);
+    console.log(response);
+    if (response) {
+      console.log(data);
+      dispatch(login(response.data.user));
+      dispatch(setLoggedIn());
+      if (response.data.user.isAdmin) {
+        console.log("admin la gardaş bu");
+        dispatch(setAsAdmin());
+      }
+      navigate("/");
+    }
+  };
+
   return (
     <section className="h-screen flex md:flex-col flex-row justify-center gap-5 px-5 items-center ">
       <div className="  max-w-sm flex ">
@@ -12,6 +36,10 @@ const LoginPage = () => {
       <div className="sm:w-[90%] max-w-sm w-2/5  flex flex-col gap-5">
         <div class="relative z-0 w-full group">
           <input
+            value={user.email}
+            onChange={(e) => {
+              setUser({ ...user, email: e.target.value });
+            }}
             type="email"
             name="email"
             id="email"
@@ -28,6 +56,10 @@ const LoginPage = () => {
         </div>
         <div class="relative z-0 w-full group">
           <input
+            value={user.password}
+            onChange={(e) => {
+              setUser({ ...user, password: e.target.value });
+            }}
             type="password"
             name="password"
             id="password"
@@ -53,6 +85,7 @@ const LoginPage = () => {
         </div>
         <div className="text-center md:text-left">
           <button
+            onClick={handleLogin}
             className="mt-4 bg-blueLight hover:bg-blueDark px-4 py-2 transition-all hover:scale-105 text-white uppercase rounded text-xs tracking-wider"
             type="submit"
           >

@@ -10,8 +10,8 @@ router.get("/getAllPosts", getAllPosts);
 
 router.get("/searchPost/", searchPost);
 router.get("/getDetailPost/:id",getPostById );
-router.post("/createPost",auth, createPost);
-router.patch("/updatePost/:id",auth, updatePost);
-router.delete("/deletePost/:id",auth, deletePost);
+router.post("/createPost", createPost);
+router.patch("/updatePost/:id", updatePost);
+router.delete("/deletePost/:id", deletePost);
 
 module.exports = router;

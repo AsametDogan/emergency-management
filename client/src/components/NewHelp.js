@@ -8,11 +8,22 @@ import {
   Select,
 } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
+//import { useSelector } from 'react-redux';
+import * as api from '../api/post.js';
 
 const NewHelp = ({ open, handleOpen }) => {
   const [post, setPost] = useState({ type: "", urgency: "" });
-
   const [size, setSize] = useState("xl");
+  //const {user} = useSelector(state => state.user)
+
+  const handleOnSubmit = async () => {
+    console.log("handleOnSubmit first line");
+    const data = await api.newPostApi(post);
+    console.log("handleOnSubmit OK");
+  }
+
+
+
 
   useEffect(() => {
     if (window.innerWidth <= 500) {
@@ -56,9 +67,9 @@ const NewHelp = ({ open, handleOpen }) => {
             <div className="flex flex-col w-2/3">
               <label className="text-gradient">Açıklama:</label>
               <input
-                value={post.descriptions}
+                value={post.description}
                 onChange={(e) => {
-                  setPost({ ...post, descriptions: e.target.value });
+                  setPost({ ...post, description: e.target.value });
                 }}
                 className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
               />
@@ -67,9 +78,9 @@ const NewHelp = ({ open, handleOpen }) => {
             <div className="flex flex-col w-2/3">
               <label className="text-gradient">Konum:</label>
               <input
-                value={post.locations}
+                value={post.location}
                 onChange={(e) => {
-                  setPost({ ...post, locations: e.target.value });
+                  setPost({ ...post, location: e.target.value });
                 }}
                 className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
               />
@@ -96,16 +107,7 @@ const NewHelp = ({ open, handleOpen }) => {
               />
             </div>
 
-            <div className="flex flex-col w-2/3">
-              <label className="text-gradient">Durum Başlığı:</label>
-              <input
-                value={post.contactNumber}
-                onChange={(e) => {
-                  setPost({ ...post, contactNumber: e.target.value });
-                }}
-                className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
-              />
-            </div>
+           
 
             <div className="w-[90%] flex ">
               <Select
@@ -156,7 +158,7 @@ const NewHelp = ({ open, handleOpen }) => {
         >
           <span>Cancel</span>
         </Button>
-        <Button variant="gradient" color="green" onClick={handleOpen}>
+        <Button variant="gradient" color="green" onClick={handleOnSubmit}>
           <span>Confirm</span>
         </Button>
       </DialogFooter>

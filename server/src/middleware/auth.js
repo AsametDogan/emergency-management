@@ -15,7 +15,7 @@ const auth = async (req, res, next) => {
     }
     next();
   } catch (error) {
-    console.log("midware/auth");
+    console.log("midware/auth",error.message);
   }
 };
 

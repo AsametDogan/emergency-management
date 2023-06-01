@@ -26,7 +26,7 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="h-screen flex md:flex-col flex-row justify-center gap-5 px-5 items-center ">
+    <section className="h-screen flex md:flex-col flex-row justify-center gap-14 px-5 items-center ">
       <div className="  max-w-sm flex ">
         <img
           src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"

@@ -4,10 +4,14 @@ import {
   DialogBody,
   DialogFooter,
   DialogHeader,
+  Option,
+  Select,
 } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 
 const NewHelp = ({ open, handleOpen }) => {
+  const [post, setPost] = useState({ type: "", urgency: "" });
+
   const [size, setSize] = useState("xl");
 
   useEffect(() => {
@@ -19,6 +23,10 @@ const NewHelp = ({ open, handleOpen }) => {
       setSize("lg");
     }
   }, [window.innerWidth]);
+
+  const deneme = (e) => {
+    console.log(e.target.value);
+  };
 
   return (
     <Dialog
@@ -36,29 +44,106 @@ const NewHelp = ({ open, handleOpen }) => {
           <div className="flex flex-col gap-3 justify-center items-center ">
             <div className="flex flex-col w-2/3">
               <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
+              <input
+                value={post.title}
+                onChange={(e) => {
+                  setPost({ ...post, title: e.target.value });
+                }}
+                className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
+              />
             </div>
 
             <div className="flex flex-col w-2/3">
               <label className="text-gradient">Açıklama:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
+              <input
+                value={post.descriptions}
+                onChange={(e) => {
+                  setPost({ ...post, descriptions: e.target.value });
+                }}
+                className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
+              />
             </div>
 
             <div className="flex flex-col w-2/3">
-              <label className="text-gradient">Bölge:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
+              <label className="text-gradient">Konum:</label>
+              <input
+                value={post.locations}
+                onChange={(e) => {
+                  setPost({ ...post, locations: e.target.value });
+                }}
+                className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
+              />
             </div>
 
             <div className="flex flex-col w-2/3">
               <label className="text-gradient">Çağrı Gönderen:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
+              <input
+                value={post.contactName}
+                onChange={(e) => {
+                  setPost({ ...post, contactName: e.target.value });
+                }}
+                className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
+              />
+            </div>
+            <div className="flex flex-col w-2/3">
+              <label className="text-gradient">İletişim Numarası:</label>
+              <input
+                value={post.contactNumber}
+                onChange={(e) => {
+                  setPost({ ...post, contactNumber: e.target.value });
+                }}
+                className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
+              />
             </div>
 
             <div className="flex flex-col w-2/3">
               <label className="text-gradient">Durum Başlığı:</label>
-              <input className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none" />
-            </div> 
-            
+              <input
+                value={post.contactNumber}
+                onChange={(e) => {
+                  setPost({ ...post, contactNumber: e.target.value });
+                }}
+                className="bg-gray-50 px-2 py-1 border-b rounded-md outline-none"
+              />
+            </div>
+
+            <div className="w-[90%] flex ">
+              <Select
+                size="md"
+                label="Tür"
+                value={post.type}
+                onChange={(val) => {
+                  // setFilter({ ...filter, type: val });
+                  setPost({ ...post, type: val });
+                }}
+              >
+                <Option value="earthquake">Deprem</Option>
+                <Option value="fire">Yangın</Option>
+                <Option value="flood">Sel</Option>
+                <Option value="whirlwind">Hortum</Option>
+                <Option value="tsunami">Tsunami</Option>
+                <Option value="landslide">Heyelan</Option>
+                <Option value="other">Diğer</Option>
+              </Select>
+            </div>
+            <div className="w-[90%] flex ">
+              <Select
+                size="md"
+                label="Aciliyet"
+                value={post.urgency}
+                onChange={(val) => {
+                  // setFilter({ ...filter, type: val });
+                  setPost({ ...post, urgency: val });
+                }}
+              >
+                <Option value={"0"}> Olağan Durum</Option>
+                <Option value={"1"}>Beklenti Durum</Option>
+                <Option value={"2"}> Destek Durum</Option>
+                <Option value={"3"}> İhtiyaç Durum</Option>
+                <Option value={"4"}>Acil Durum</Option>
+                <Option value={"5"}> Yüksek Aciliyet</Option>
+              </Select>
+            </div>
           </div>
         </form>
       </DialogBody>
